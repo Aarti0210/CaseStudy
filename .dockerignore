@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.pytest_cache
+.venv
+venv
+env
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Development
+tests/
+pytest.ini
+*.md
+LICENSE
+
+# Builds
+build/
+dist/
+*.egg
+
+# Migrations (optional - keep for production)
+# migrations/
+
+# Cache
+.cache
+.pytest_cache
+.mypy_cache

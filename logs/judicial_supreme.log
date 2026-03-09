@@ -1,0 +1,412 @@
+2026-02-24 17:38:15,390 - ERROR - flask_migrate - Error: Path doesn't exist: migrations.  Please use the 'init' command to create a new scripts folder.
+2026-03-01 14:03:31,937 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:03:35,654 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:03:35,670 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:22:33,402 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:22:37,483 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:22:37,499 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:36:59,741 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:37:03,597 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:37:03,610 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:50:23,146 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 14:50:24,024 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:50:29,704 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:50:29,735 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:50:44,988 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 14:50:45,785 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:50:53,016 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:50:53,046 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:52:12,258 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:52:18,795 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:52:18,819 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 14:55:56,825 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 14:56:01,968 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 14:56:01,988 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:04:16,507 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 15:04:16,835 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 15:04:17,269 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:04:17,579 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:04:22,782 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:04:22,800 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:04:22,814 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:04:22,832 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:05:39,540 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 15:05:39,786 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 15:05:40,153 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:05:40,465 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:05:45,213 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:05:45,228 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:05:45,305 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:05:45,322 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:28:11,416 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 15:28:11,565 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 15:28:12,143 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:28:12,315 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:28:19,634 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:28:19,642 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:28:19,655 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:28:19,665 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:46:51,251 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:46:56,538 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:46:56,560 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:55:43,399 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\seed_roles.py', reloading
+2026-03-01 15:55:43,847 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\seed_roles.py', reloading
+2026-03-01 15:55:44,181 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:55:44,646 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 15:55:50,334 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:55:50,355 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 15:55:50,837 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 15:55:50,858 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:01:27,336 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 16:01:27,667 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 16:01:28,441 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:01:28,625 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:01:35,276 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:01:35,294 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:01:35,405 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:01:35,424 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:02:19,089 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 16:02:20,399 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:02:22,041 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-01 16:02:23,782 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:02:30,560 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:02:30,589 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:02:32,058 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:02:32,084 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:03:54,551 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:04:06,716 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:04:06,740 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:07:20,291 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:07:21,507 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:07:21,785 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:07:22,275 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:07:22,718 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:07:23,506 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:07:29,467 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:07:29,491 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:07:29,495 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:07:29,757 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:07:29,776 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:10:13,149 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:10:14,470 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:10:14,508 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:10:15,012 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\test_auth_endpoints.py', reloading
+2026-03-01 16:10:15,512 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:10:16,077 - INFO - werkzeug -  * Restarting with stat
+2026-03-01 16:10:23,686 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:10:23,795 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:10:25,470 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:10:25,498 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 16:10:26,016 - WARNING - werkzeug -  * Debugger is active!
+2026-03-01 16:10:26,068 - INFO - werkzeug -  * Debugger PIN: 135-944-635
+2026-03-01 18:43:28,726 - ERROR - sqlalchemy.pool.impl.QueuePool - Exception during reset or similar
+Traceback (most recent call last):
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 985, in _finalize_fairy
+    fairy._reset(
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 1433, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 712, in do_rollback
+    dbapi_connection.rollback()
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pymysql\connections.py", line 505, in rollback
+    self._read_ok_packet()
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pymysql\connections.py", line 465, in _read_ok_packet
+    pkt = self._read_packet()
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1226, "User 'freedb_Court' has exceeded the 'max_questions' resource (current value: 1000)")
+2026-03-01 19:00:35,014 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-01 19:00:36,716 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-02 18:05:53,370 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 18:05:57,271 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 18:05:57,294 - INFO - werkzeug -  * Debugger PIN: 892-907-940
+2026-03-02 18:21:31,644 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 18:21:36,971 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 18:21:36,994 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:20:31,138 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\config.py', reloading
+2026-03-02 20:20:31,985 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:20:35,862 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:20:35,878 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:20:40,222 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\extensions.py', reloading
+2026-03-02 20:20:40,967 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:20:45,233 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:20:45,249 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:20:50,447 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\config.py', reloading
+2026-03-02 20:20:50,972 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:20:54,564 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:20:54,573 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:23:24,306 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\__init__.py', reloading
+2026-03-02 20:23:25,021 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:51:44,757 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:51:51,359 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:51:51,371 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:53:01,260 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_ml_endpoint.py', reloading
+2026-03-02 20:53:02,367 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:53:10,328 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:53:10,339 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:54:01,318 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:54:08,222 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:54:08,231 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 20:55:28,331 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 20:55:34,620 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 20:55:34,628 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:02:37,133 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:02:43,673 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:02:43,687 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:03:17,392 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_ml_endpoint.py', reloading
+2026-03-02 21:03:18,441 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:03:26,448 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:03:26,460 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:03:41,670 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_ml_endpoint.py', reloading
+2026-03-02 21:03:42,486 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:03:50,156 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:03:50,160 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:04:45,146 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_ml_endpoint.py', reloading
+2026-03-02 21:04:46,226 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:04:55,840 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:04:55,857 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:05:04,938 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_ml_endpoint.py', reloading
+2026-03-02 21:05:05,815 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:05:12,862 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:05:12,878 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:28:28,686 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:28:34,917 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:28:34,925 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:50:47,644 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 21:50:48,827 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:50:56,362 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:50:56,374 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:51:26,490 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 21:51:27,709 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:51:35,657 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:51:35,673 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 21:53:13,940 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\random_predictions.py', reloading
+2026-03-02 21:53:14,948 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 21:53:23,563 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 21:53:23,572 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:00:12,952 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:00:13,766 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:00:19,830 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:00:19,837 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:00:21,390 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:00:22,085 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:00:27,449 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:00:27,461 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:01:07,920 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:01:08,611 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:01:13,385 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:01:13,395 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:03:47,237 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:03:47,967 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:03:52,631 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:03:52,638 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:04:33,484 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\ml\\predict.py', reloading
+2026-03-02 22:04:35,009 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:04:40,778 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:04:40,790 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:06:26,943 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\config.py', reloading
+2026-03-02 22:06:27,696 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:06:32,946 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:06:32,959 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:06:54,293 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\run_training.py', reloading
+2026-03-02 22:06:55,144 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:07:00,706 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:07:00,713 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:07:19,747 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\ai\\routes.py', reloading
+2026-03-02 22:07:20,541 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:08:16,479 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:08:16,487 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:14:21,361 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:14:25,937 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:14:25,943 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:15:25,535 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:15:26,042 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:15:26,473 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:15:26,908 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:15:32,361 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:15:32,373 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:15:32,718 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:15:32,727 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:16:05,866 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:16:05,871 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:16:06,831 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:16:06,922 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:16:13,323 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:16:13,333 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:16:13,499 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:16:13,511 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:18:10,285 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:18:11,093 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:18:11,148 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:18:11,971 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:18:17,318 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:18:17,328 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:18:18,174 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:18:18,182 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:18:49,514 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:18:49,916 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:18:50,421 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:18:50,789 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:18:56,406 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:18:56,415 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:18:56,669 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:18:56,680 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:19:44,774 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:19:44,899 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\scripts\\debug_model_info.py', reloading
+2026-03-02 22:19:45,855 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:19:46,051 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:19:51,886 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:19:51,894 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:19:52,074 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:19:52,081 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:20:50,649 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:20:50,722 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:20:51,658 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:20:51,841 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:20:56,921 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:20:56,928 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:20:56,992 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:20:57,003 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:21:19,292 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:21:20,093 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:21:20,459 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:21:21,341 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:21:26,307 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:21:26,318 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:21:27,332 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:21:27,342 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:23:13,431 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\ai\\services.py', reloading
+2026-03-02 22:23:13,461 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\ai\\services.py', reloading
+2026-03-02 22:23:14,631 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:23:14,759 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:23:20,592 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:23:20,592 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:23:20,601 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:23:20,603 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:25:45,185 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:25:45,295 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:25:46,208 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:25:46,382 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:25:52,271 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:25:52,273 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:25:52,284 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:25:52,289 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:26:24,017 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:26:24,094 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\tests\\test_ml_predictor.py', reloading
+2026-03-02 22:26:25,010 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:26:25,014 - INFO - werkzeug -  * Restarting with stat
+2026-03-02 22:26:30,505 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:26:30,515 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-02 22:26:30,517 - WARNING - werkzeug -  * Debugger is active!
+2026-03-02 22:26:30,529 - INFO - werkzeug -  * Debugger PIN: 719-171-711
+2026-03-03 14:00:18,927 - ERROR - app - Failed to send OTP email after retries: please run connect() first
+NoneType: None
+2026-03-03 14:09:16,513 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 14:09:46,937 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 14:12:03,984 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 14:23:43,914 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:43,919 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:43,923 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:43,926 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:44,791 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:44,794 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:44,798 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:44,798 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:46,333 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:46,336 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:46,341 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:46,346 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:47,237 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:47,240 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:47,243 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:47,246 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:48,120 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:48,123 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:48,127 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:48,130 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,007 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,012 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,016 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,019 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,881 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,886 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,889 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:49,892 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:50,920 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:50,923 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:50,926 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:50,930 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:51,807 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:51,810 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:51,814 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:51,817 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:52,822 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:52,826 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:52,830 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:52,834 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:53,811 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:53,815 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:53,819 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:53,825 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:54,778 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:54,781 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:54,785 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:54,789 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:55,720 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:55,725 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:55,728 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:55,731 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:56,716 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:56,719 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:56,723 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:56,726 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:57,625 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:57,629 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:57,632 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:57,637 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:58,529 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:58,533 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:58,537 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:58,541 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:59,446 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:59,449 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:59,453 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 14:23:59,457 - INFO - flask-limiter - ratelimit 20 per 1 hour (127.0.0.1) exceeded at endpoint: auth.login
+2026-03-03 16:24:59,397 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 16:49:04,802 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 17:18:57,866 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 17:23:07,220 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 17:27:17,554 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-03 17:50:11,437 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-04 18:30:20,385 - INFO - werkzeug -  * Restarting with stat
+2026-03-04 18:30:36,664 - WARNING - werkzeug -  * Debugger is active!
+2026-03-04 18:30:36,697 - INFO - werkzeug -  * Debugger PIN: 892-907-940
+2026-03-04 18:37:20,909 - INFO - werkzeug -  * Restarting with stat
+2026-03-04 18:37:33,504 - WARNING - werkzeug -  * Debugger is active!
+2026-03-04 18:37:33,546 - INFO - werkzeug -  * Debugger PIN: 892-907-940
+2026-03-04 22:22:49,074 - INFO - werkzeug -  * Restarting with stat
+2026-03-04 22:22:54,647 - WARNING - werkzeug -  * Debugger is active!
+2026-03-04 22:22:54,676 - INFO - werkzeug -  * Debugger PIN: 892-907-940
+2026-03-04 22:22:54,676 - INFO - werkzeug -  * Debugger PIN: 892-907-940
+2026-03-06 19:27:01,531 - INFO - werkzeug -  * Restarting with stat
+2026-03-06 19:27:17,080 - WARNING - werkzeug -  * Debugger is active!
+2026-03-06 19:27:17,126 - INFO - werkzeug -  * Debugger PIN: 101-379-047
+2026-03-06 19:34:00,153 - INFO - werkzeug -  * Restarting with stat
+2026-03-06 19:34:10,339 - WARNING - werkzeug -  * Debugger is active!
+2026-03-06 19:34:10,355 - INFO - werkzeug -  * Debugger PIN: 101-379-047
+2026-03-06 19:37:04,965 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_routes.py', reloading
+2026-03-06 19:37:07,648 - INFO - werkzeug -  * Restarting with stat
+2026-03-06 19:37:32,008 - WARNING - werkzeug -  * Debugger is active!
+2026-03-06 19:37:32,042 - INFO - werkzeug -  * Debugger PIN: 101-379-047
+2026-03-06 19:41:09,362 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_api.py', reloading
+2026-03-06 19:41:11,135 - INFO - werkzeug -  * Restarting with stat
+2026-03-06 19:41:23,349 - WARNING - werkzeug -  * Debugger is active!
+2026-03-06 19:41:23,368 - INFO - werkzeug -  * Debugger PIN: 101-379-047
+2026-03-06 19:52:15,295 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\test_api.py', reloading
+2026-03-06 19:52:16,125 - INFO - werkzeug -  * Restarting with stat
+2026-03-06 19:52:24,230 - WARNING - werkzeug -  * Debugger is active!
+2026-03-06 19:52:24,247 - INFO - werkzeug -  * Debugger PIN: 101-379-047

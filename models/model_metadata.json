@@ -1,0 +1,80 @@
+{
+  "model_version": "v1",
+  "trained_at": "2026-03-02T15:20:07.738582",
+  "dataset_size": 2000,
+  "train_size": 1600,
+  "test_size": 400,
+  "metrics": {
+    "rmse": 97.55574175695658,
+    "mae": 79.87149999999998,
+    "r2": 0.8783109460507609,
+    "cv_rmse": 100.80148817188737
+  },
+  "feature_list": [
+    "case_type",
+    "number_of_hearings",
+    "judge_workload",
+    "document_count",
+    "case_priority",
+    "filing_to_first_hearing_days",
+    "court_level",
+    "previous_adjournments"
+  ],
+  "mappings": {
+    "case_type": {
+      "civil": 1,
+      "criminal": 2,
+      "family": 3,
+      "labor": 4,
+      "tax": 5,
+      "__default": 0
+    },
+    "case_priority": {
+      "high": 1,
+      "low": 2,
+      "medium": 3,
+      "__default": 0
+    },
+    "court_level": {
+      "district": 1,
+      "high_court": 2,
+      "magistrate": 3,
+      "supreme": 4,
+      "__default": 0
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "court_level",
+      "importance": 0.8332889233218145
+    },
+    {
+      "feature": "case_type",
+      "importance": 0.030888498239651344
+    },
+    {
+      "feature": "filing_to_first_hearing_days",
+      "importance": 0.02853943270498258
+    },
+    {
+      "feature": "judge_workload",
+      "importance": 0.027625016729503075
+    },
+    {
+      "feature": "case_priority",
+      "importance": 0.02369281715625062
+    },
+    {
+      "feature": "number_of_hearings",
+      "importance": 0.02279871732501761
+    },
+    {
+      "feature": "document_count",
+      "importance": 0.017331789881682328
+    },
+    {
+      "feature": "previous_adjournments",
+      "importance": 0.015834804641097974
+    }
+  ]
+}

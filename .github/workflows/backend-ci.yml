@@ -1,0 +1,153 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    # ========== PHASE 2: Security & Quality Checks ==========
+    
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        echo "✓ Syntax validation passed"
+      continue-on-error: false
+    
+    - name: Scan for dependency vulnerabilities (pip-audit)
+      run: |
+        pip install pip-audit
+        pip-audit --desc
+      continue-on-error: false
+    
+    - name: Check for .env file in repository
+      run: |
+        if [ -f .env ]; then
+          echo "ERROR: .env file detected in repository"
+          echo "This file should NOT be committed. Use .env.example instead."
+          exit 1
+        fi
+        echo "✓ No .env file in repository"
+      shell: bash
+    
+    - name: Check for hardcoded secrets
+      run: |
+        echo "Checking for potential hardcoded secrets..."
+        set +e  # Don't exit on grep failure
+        
+        # Check for common secret patterns (excluding test files and venv)
+        SECRETS_FOUND=$(grep -r "JWT_SECRET_KEY\|SECRET_KEY\|API_KEY\|PASSWORD" . \
+          --include="*.py" \
+          --exclude-dir=".venv" \
+          --exclude-dir="__pycache__" \
+          --exclude-dir=".git" \
+          --exclude="*.pyc" \
+          | grep -E "['\"].*['\"]" \
+          | grep -v "os.environ" \
+          | grep -v "config.py" \
+          | grep -v "test" \
+          | wc -l)
+        
+        if [ "$SECRETS_FOUND" -gt 0 ]; then
+          echo "⚠️  WARNING: Potential hardcoded values detected. Please review:"
+          grep -r "JWT_SECRET_KEY\|SECRET_KEY\|API_KEY\|PASSWORD" . \
+            --include="*.py" \
+            --exclude-dir=".venv" \
+            --exclude-dir="__pycache__" \
+            --exclude="*.pyc" | grep -E "['\"].*['\"]" || true
+        else
+          echo "✓ No obvious hardcoded secrets detected"
+        fi
+        
+        set -e
+      shell: bash
+      continue-on-error: true
+    
+    # ========== PHASE 1: Run Test Suite ==========
+    
+    - name: Run pytest
+      env:
+        FLASK_ENV: testing
+        JWT_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        DATABASE_URL: sqlite:///:memory:
+      run: |
+        python -m pytest tests/ -v --tb=short
+        echo "✓ All tests passed"
+    
+    - name: Test coverage summary
+      env:
+        FLASK_ENV: testing
+        JWT_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        DATABASE_URL: sqlite:///:memory:
+      run: |
+        pip install pytest-cov
+        python -m pytest tests/ --cov=app --cov-report=term-only --cov-report=html
+      continue-on-error: true
+    
+    # ========== PHASE 3: Docker Validation ==========
+    
+    - name: Build Docker image
+      run: |
+        docker build -t judicial-backend:latest .
+        echo "✓ Docker image built successfully"
+    
+    - name: Validate Docker image
+      run: |
+        # Check that the image was created
+        if docker images | grep -q judicial-backend; then
+          IMAGE_SIZE=$(docker images judicial-backend:latest --format "{{.Size}}")
+          echo "✓ Docker image validated"
+          echo "  Image tag: judicial-backend:latest"
+          echo "  Image size: $IMAGE_SIZE"
+        else
+          echo "ERROR: Docker image not found"
+          exit 1
+        fi
+    
+    # ========== Summary ==========
+    
+    - name: CI Pipeline Summary
+      if: success()
+      run: |
+        echo "=========================================="
+        echo "✓ CI Pipeline Completed Successfully"
+        echo "=========================================="
+        echo "✓ Code syntax validated (flake8)"
+        echo "✓ Dependencies scanned (pip-audit)"
+        echo "✓ No .env file in repository"
+        echo "✓ All tests passed"
+        echo "✓ Docker image built successfully"
+        echo "=========================================="
+    
+    - name: CI Pipeline Failed
+      if: failure()
+      run: |
+        echo "=========================================="
+        echo "✗ CI Pipeline Failed"
+        echo "=========================================="
+        echo "Please fix the errors above and push again."
+        exit 1
