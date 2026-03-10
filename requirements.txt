@@ -12,7 +12,7 @@ gunicorn==25.1.0
 # database drivers
 psycopg2-binary==2.9.10
 joblib==1.4.2
-scikit-learn==1.5.3
+scikit-learn==1.5.2
 # Note: This project targets PostgreSQL on Render Free. Remove PyMySQL if not needed.
 eventlet==0.40.4
 Werkzeug==3.1.6
