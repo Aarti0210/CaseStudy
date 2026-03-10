@@ -3,6 +3,12 @@ Production-safe application entry point.
 Use with Gunicorn: gunicorn -k eventlet -w 2 run:app
 For local development: python -m flask run
 """
+
+# monkey-patch early so that eventlet green threads behave correctly.
+# Without this, gunicorn emits "1 RLock(s) were not greened" on startup.
+import eventlet
+eventlet.monkey_patch()
+
 from app import create_app
 from app.extensions import socketio
 

@@ -82,10 +82,12 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     # In production enforce DATABASE_URL and do not fall back to SQLite.
-    _prod_db = os.getenv("DATABASE_URL")
+    _prod_db = os.getenv("DATABASE_URL") or os.getenv("RENDER_DATABASE_URL")
     if not _prod_db:
-        raise RuntimeError("DATABASE_URL must be set in production environment")
-    # normalize Render's postgres:// prefix to postgresql:// for SQLAlchemy
+        raise RuntimeError(
+            "DATABASE_URL (or RENDER_DATABASE_URL) must be set in production environment"
+        )
+    # normalize postgres:// prefix to postgresql:// for SQLAlchemy
     if isinstance(_prod_db, str) and _prod_db.startswith("postgres://"):
         _prod_db = _prod_db.replace("postgres://", "postgresql://", 1)
     SQLALCHEMY_DATABASE_URI = _prod_db
