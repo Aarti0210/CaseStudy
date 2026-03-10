@@ -17,7 +17,11 @@ import json
 
 # simple in-memory cache with TTL
 _CACHE = {}
-_CACHE_TTL = int(current_app.config.get("AI_CACHE_TTL", 300)) if current_app else 300
+
+try:
+    _CACHE_TTL = int(current_app.config.get("AI_CACHE_TTL", 300))
+except Exception:
+    _CACHE_TTL = 300
 
 
 def _cache_key(feature, payload):

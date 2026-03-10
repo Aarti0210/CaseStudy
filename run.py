@@ -18,8 +18,11 @@ if __name__ == "__main__":
     # Development only: use flask's built-in server
     # Production: use Gunicorn with eventlet worker
     import os
+    port = int(os.environ.get("PORT", 5000))
+    host = "0.0.0.0"
+
     if os.getenv("FLASK_ENV") == "development":
-        socketio.run(app, debug=True, host="0.0.0.0", port=5000)
+        socketio.run(app, debug=True, host=host, port=port)
     else:
         # warn the user but still start the server so that local
         # `python run.py` doesn't immediately exit with an error code.
@@ -28,4 +31,5 @@ if __name__ == "__main__":
         print("WARNING: Running built-in server; use Gunicorn for production.")
         print("  Standard deployment: gunicorn -k eventlet -w 2 run:app")
         print("  Render Free (1 worker): gunicorn -k eventlet -w 1 run:app")
-        socketio.run(app, host="0.0.0.0", port=5000)
+        socketio.run(app, host=host, port=port)
+
