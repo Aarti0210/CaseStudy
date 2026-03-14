@@ -472,3 +472,8 @@ NoneType: None
 2026-03-14 19:07:20,365 - WARNING - werkzeug -  * Debugger is active!
 2026-03-14 19:07:20,392 - INFO - werkzeug -  * Debugger PIN: 382-646-389
 2026-03-14 20:26:58,828 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-14T14:56:58.828683", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-14 20:51:31,910 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-14T15:21:31.910620", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-14 20:52:18,467 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 20:52:20,911 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-14T15:22:20.911920", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-14 20:52:25,751 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 20:52:25,760 - INFO - werkzeug -  * Debugger PIN: 382-646-389
