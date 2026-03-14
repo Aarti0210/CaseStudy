@@ -12,6 +12,7 @@ from app.models.otp import OTP
 from app.models.user import User
 from app.models.role import Role
 from services.otp_email import send_otp_email
+from app.utils.api_response import success_response, error_response
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -23,41 +24,58 @@ def _validate_email(email):
 @auth_bp.route("/signup", methods=["POST"])
 @limiter.limit("10 per hour")
 def signup():
-    data = request.get_json() or {}
-    required_fields = ["name", "email", "password", "role"]
-    for field in required_fields:
-        if not data.get(field):
-            return jsonify({"message": f"{field} is required"}), 400
+    try:
+        data = request.get_json() or {}
+        required_fields = ["name", "email", "password", "role"]
+        for field in required_fields:
+            if not data.get(field):
+                return error_response(f"{field} is required", 400)
 
-    allowed_roles = ["admin", "lawyer", "judge", "citizen"]
-    if data["role"] not in allowed_roles:
-        return jsonify({"message": "Invalid role"}), 400
+        allowed_roles = ["admin", "lawyer", "judge", "citizen"]
+        if data["role"] not in allowed_roles:
+            return error_response("Invalid role", 400)
 
-    if not _validate_email(data["email"]):
-        return jsonify({"message": "Invalid email"}), 400
+        if not _validate_email(data["email"]):
+            return error_response("Invalid email", 400)
 
-    if User.query.filter_by(email=data["email"]).first():
-        return jsonify({"message": "Email already registered"}), 409
+        if User.query.filter_by(email=data["email"]).first():
+            return error_response("Email already registered", 409)
 
-    # look up role record and set foreign key
-    role_obj = Role.query.filter_by(name=data["role"]).first()
-    if not role_obj:
-        # create role automatically if missing to reduce configuration errors
-        role_obj = Role(name=data["role"])
-        try:
-            db.session.add(role_obj)
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-            return jsonify({"message": "Invalid role"}), 400
+        # Look up role record and set foreign key
+        role_obj = Role.query.filter_by(name=data["role"]).first()
+        if not role_obj:
+            role_obj = Role(name=data["role"])
+            try:
+                db.session.add(role_obj)
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                return jsonify({"message": "Database error creating role"}), 500
 
-    user = User(name=data["name"], email=data["email"], role_id=role_obj.id)
-    # store password using model helper to keep hashing consistent
-    user.set_password(data["password"])
-    db.session.add(user)
-    db.session.commit()
+        user = User(name=data["name"], email=data["email"], role_id=role_obj.id)
+        user.set_password(data["password"])
+        db.session.add(user)
+        db.session.commit()
 
-    return jsonify({"message": "User created successfully"}), 201
+        # Optional: Generate tokens here if your Flutter app expects them after signup
+        # access_token = create_access_token(identity=user.id)
+        # refresh_token = create_refresh_token(identity=user.id)
+        # return jsonify({
+        #     "message": "User created successfully",
+        #     "access_token": access_token,
+        #     "refresh_token": refresh_token,
+        #     "user": user.to_dict()
+        # }), 201
+
+        return success_response(
+            data={"user": user.to_dict()}, message="User created successfully", status_code=201
+        )
+
+    except Exception as e:
+        db.session.rollback()
+        # Log the error for debugging
+        print(f"Signup error: {str(e)}")
+        return error_response("Internal server error", 500)
 
 
 @auth_bp.route("/login", methods=["POST"])
@@ -65,11 +83,11 @@ def signup():
 def login():
     data = request.get_json() or {}
     if not data.get("email") or not data.get("password"):
-        return jsonify({"message": "Email and password required"}), 400
+        return error_response("Email and password required", 400)
 
     user = User.query.filter_by(email=data["email"]).first()
     if not user or not user.check_password(data["password"]):
-        return jsonify({"message": "Invalid credentials"}), 401
+        return error_response("Invalid credentials", 401)
 
     user_role = user.role_obj.name if user.role_obj else None
     # identity must be serialized to a string because PyJWT requires the
@@ -80,20 +98,17 @@ def login():
     access_token = create_access_token(identity=identity)
     refresh_token = create_refresh_token(identity=identity)
 
-    return (
-        jsonify(
-            {
-                "access_token": access_token,
-                "refresh_token": refresh_token,
-                "user": {
-                    "id": user.id,
-                    "name": user.name,
-                    "email": user.email,
-                    "role": user_role,
-                },
-            }
-        ),
-        200,
+    return success_response(
+        data={
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "user": {
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "role": user_role,
+            },
+        }
     )
 
 
@@ -102,7 +117,7 @@ def login():
 def refresh_token():
     identity = get_jwt_identity()
     access_token = create_access_token(identity=identity)
-    return jsonify({"access_token": access_token}), 200
+    return success_response(data={"access_token": access_token})
 
 
 @auth_bp.route("/otp/request", methods=["POST"])
@@ -111,10 +126,10 @@ def request_otp():
     data = request.get_json() or {}
     email = data.get("email")
     if not email:
-        return jsonify({"message": "Email required"}), 400
+        return error_response("Email required", 400)
     user = User.query.filter_by(email=email).first()
     if not user:
-        return jsonify({"message": "User not found"}), 404
+        return error_response("User not found", 404)
 
     # enforce resend cooldown
     cooldown = int(current_app.config.get("OTP_RESEND_COOLDOWN", 60))
@@ -136,13 +151,11 @@ def request_otp():
             except Exception:
                 db.session.rollback()
             return (
-                jsonify(
-                    {
-                        "message": "Please wait before requesting another OTP",
-                        "retry_after": retry_after,
-                    }
-                ),
-                429,
+                error_response(
+                    "Please wait before requesting another OTP",
+                    429,
+                    data={"retry_after": retry_after},
+                )
             )
 
     # generate 6-digit numeric code
@@ -172,9 +185,8 @@ def request_otp():
     if not sent:
         return jsonify({"message": "Failed to send OTP, try again later"}), 500
 
-    return (
-        jsonify({"message": "OTP sent", "ttl": current_app.config.get("OTP_TTL", 300)}),
-        200,
+    return success_response(
+        data={"ttl": current_app.config.get("OTP_TTL", 300)}, message="OTP sent"
     )
 
 
@@ -184,10 +196,10 @@ def verify_otp():
     email = data.get("email")
     code = data.get("code")
     if not email or not code:
-        return jsonify({"message": "Email and code required"}), 400
+        return error_response("Email and code required", 400)
     user = User.query.filter_by(email=email).first()
     if not user:
-        return jsonify({"message": "User not found"}), 404
+        return error_response("User not found", 404)
 
     otp = (
         OTP.query.filter_by(user_id=user.id, code=code, used=False)
@@ -206,7 +218,7 @@ def verify_otp():
             db.session.commit()
         except Exception:
             db.session.rollback()
-        return jsonify({"message": "Invalid or expired OTP"}), 400
+        return error_response("Invalid or expired OTP", 400)
 
     otp.used = True
     db.session.commit()
@@ -220,4 +232,4 @@ def verify_otp():
     except Exception:
         db.session.rollback()
 
-    return jsonify({"message": "OTP verified"}), 200
+    return success_response(message="OTP verified")

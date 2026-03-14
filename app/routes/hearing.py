@@ -9,6 +9,7 @@ from app.middleware.rbac import role_required, roles_allowed
 from app.models.audit import AuditLog
 from app.models.case import Case
 from app.models.hearing import Hearing
+from app.utils.api_response import success_response, error_response
 
 hearing_bp = Blueprint("hearing", __name__)
 
@@ -26,24 +27,23 @@ def schedule():
         hearing_date_str = data.get("hearing_date")
         
         if not all([case_id, hearing_date_str]):
-            return jsonify({
-                "message": "case_id and hearing_date (ISO format) are required",
-                "success": False
-            }), 400
+            return error_response(
+                "case_id and hearing_date (ISO format) are required", 400
+            )
         
         # Validate case exists
         case = Case.query.get(case_id)
         if not case:
-            return jsonify({"message": "Case not found", "success": False}), 404
+            return error_response("Case not found", 404)
         
         # Parse date
         try:
             hearing_date = datetime.fromisoformat(hearing_date_str)
         except ValueError:
-            return jsonify({
-                "message": "Invalid hearing_date format. Use ISO format (YYYY-MM-DD HH:MM:SS)",
-                "success": False
-            }), 400
+            return error_response(
+                "Invalid hearing_date format. Use ISO format (YYYY-MM-DD HH:MM:SS)",
+                400,
+            )
         
         hearing = Hearing(
             case_id=case_id,
@@ -66,19 +66,21 @@ def schedule():
         )
         db.session.commit()
         
-        return jsonify({
-            "message": "Hearing scheduled successfully",
-            "success": True,
-            "hearing": {
-                "id": hearing.id,
-                "case_id": hearing.case_id,
-                "hearing_date": hearing.hearing_date.isoformat(),
-                "status": hearing.status
-            }
-        }), 201
+        return success_response(
+            data={
+                "hearing": {
+                    "id": hearing.id,
+                    "case_id": hearing.case_id,
+                    "hearing_date": hearing.hearing_date.isoformat(),
+                    "status": hearing.status,
+                }
+            },
+            message="Hearing scheduled successfully",
+            status_code=201,
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Error scheduling hearing: {str(e)}", "success": False}), 500
+        return error_response(f"Error scheduling hearing: {str(e)}", 500)
 
 
 @hearing_bp.route("/<int:case_id>", methods=["GET"])
@@ -89,24 +91,25 @@ def get_case_hearings(case_id):
         Case.query.get_or_404(case_id)
         hearings = Hearing.query.filter_by(case_id=case_id).order_by(Hearing.hearing_date).all()
         
-        return jsonify({
-            "success": True,
-            "case_id": case_id,
-            "count": len(hearings),
-            "hearings": [
-                {
-                    "id": h.id,
-                    "hearing_date": h.hearing_date.isoformat(),
-                    "judge_id": h.judge_id,
-                    "status": h.status,
-                    "notes": h.notes,
-                    "created_at": h.created_at.isoformat()
-                }
-                for h in hearings
-            ]
-        }), 200
+        return success_response(
+            data={
+                "case_id": case_id,
+                "count": len(hearings),
+                "hearings": [
+                    {
+                        "id": h.id,
+                        "hearing_date": h.hearing_date.isoformat(),
+                        "judge_id": h.judge_id,
+                        "status": h.status,
+                        "notes": h.notes,
+                        "created_at": h.created_at.isoformat(),
+                    }
+                    for h in hearings
+                ],
+            }
+        )
     except Exception as e:
-        return jsonify({"message": f"Error fetching hearings: {str(e)}", "success": False}), 500
+        return error_response(f"Error fetching hearings: {str(e)}", 500)
 
 
 # new route for suggesting optimal slots
@@ -117,12 +120,12 @@ def suggest_hearing():
     data = request.json or {}
     case_id = data.get("case_id")
     if not case_id:
-        return jsonify({"success": False, "message": "case_id required"}), 400
+        return error_response("case_id required", 400)
 
     from app.services import smart_scheduler
 
     suggestions = smart_scheduler.suggest_optimal_hearing(case_id)
-    return jsonify({"success": True, "suggestions": suggestions}), 200
+    return success_response(data={"suggestions": suggestions})
 
 
 @hearing_bp.route("/<int:hearing_id>", methods=["PUT"])
@@ -135,7 +138,7 @@ def update_hearing(hearing_id):
         hearing = Hearing.query.get(hearing_id)
         
         if not hearing:
-            return jsonify({"message": "Hearing not found", "success": False}), 404
+            return error_response("Hearing not found", 404)
         
         data = request.json or {}
         
@@ -157,18 +160,19 @@ def update_hearing(hearing_id):
         )
         db.session.commit()
         
-        return jsonify({
-            "message": "Hearing updated successfully",
-            "success": True,
-            "hearing": {
-                "id": hearing.id,
-                "status": hearing.status,
-                "updated_at": datetime.utcnow().isoformat()
-            }
-        }), 200
+        return success_response(
+            data={
+                "hearing": {
+                    "id": hearing.id,
+                    "status": hearing.status,
+                    "updated_at": datetime.utcnow().isoformat(),
+                }
+            },
+            message="Hearing updated successfully",
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Error updating hearing: {str(e)}", "success": False}), 500
+        return error_response(f"Error updating hearing: {str(e)}", 500)
 
 
 @hearing_bp.route("/<int:hearing_id>", methods=["DELETE"])
@@ -181,7 +185,7 @@ def delete_hearing(hearing_id):
         hearing = Hearing.query.get(hearing_id)
         
         if not hearing:
-            return jsonify({"message": "Hearing not found", "success": False}), 404
+            return error_response("Hearing not found", 404)
         
         case_id = hearing.case_id
         db.session.delete(hearing)
@@ -195,11 +199,9 @@ def delete_hearing(hearing_id):
         )
         db.session.commit()
         
-        return jsonify({
-            "message": "Hearing deleted successfully",
-            "success": True,
-            "hearing_id": hearing_id
-        }), 200
+        return success_response(
+            data={"hearing_id": hearing_id}, message="Hearing deleted successfully"
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Error deleting hearing: {str(e)}", "success": False}), 500
+        return error_response(f"Error deleting hearing: {str(e)}", 500)

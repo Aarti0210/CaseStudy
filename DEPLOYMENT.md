@@ -1,17 +1,20 @@
 # Production Deployment Guide
 
-This guide covers deploying the Judicial Supreme Backend as a containerized application using Docker and Docker Compose.
+This guide covers deploying Judicial Supreme Backend as a containerized application using Docker and Docker Compose, with special focus on Render cloud platform deployment.
 
 ---
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Quick Start with Docker Compose](#quick-start-with-docker-compose)
-3. [Manual Docker Build & Run](#manual-docker-build--run)
-4. [Environment Configuration](#environment-configuration)
-5. [Production Deployment](#production-deployment)
-6. [Monitoring & Troubleshooting](#monitoring--troubleshooting)
-7. [Security Checklist](#security-checklist)
+3. [Render Deployment (Recommended)](#render-deployment-recommended)
+4. [Manual Docker Build & Run](#manual-docker-build--run)
+5. [Environment Configuration](#environment-configuration)
+6. [Database Migrations](#database-migrations)
+7. [API Versioning & Endpoints](#api-versioning--endpoints)
+8. [Production Deployment](#production-deployment)
+9. [Monitoring & Troubleshooting](#monitoring--troubleshooting)
+10. [Security Checklist](#security-checklist)
 
 ---
 
@@ -20,6 +23,7 @@ This guide covers deploying the Judicial Supreme Backend as a containerized appl
 - **Docker** 20.10+
 - **Docker Compose** 2.0+ (for container orchestration)
 - **Git** (for cloning repository)
+- **Render Account** (for cloud deployment)
 
 ### Verify Installation
 
@@ -32,7 +36,7 @@ docker-compose --version
 
 ## Quick Start with Docker Compose
 
-The easiest way to run the entire stack (backend + PostgreSQL) is with docker-compose.
+The easiest way to run entire stack (backend + PostgreSQL) is with docker-compose.
 
 ### Step 1: Clone & Setup
 
@@ -67,7 +71,17 @@ docker-compose logs -f backend
 # Wait for database to initialize (~10-15 seconds)
 ```
 
-### Step 4: Verify Deployment
+### Step 4: Database Migration
+
+```bash
+# Initialize migrations (first time only)
+docker-compose exec backend python scripts/init_migrations.py
+
+# Or run migrations manually
+docker-compose exec backend flask db upgrade
+```
+
+### Step 5: Verify Deployment
 
 ```bash
 # Check all services running
@@ -80,19 +94,235 @@ curl http://localhost:8000/health
 docker-compose logs backend | tail -20
 ```
 
-### Step 5: Database Migration (if needed)
-
-```bash
-# Run migrations inside container
-docker-compose exec backend flask db upgrade
-```
-
 ::: tip
 Default access:
 - **Backend API**: http://localhost:8000
 - **Health Endpoint**: http://localhost:8000/health
+- **API v1 Endpoints**: http://localhost:8000/api/v1/...
 - **PostgreSQL**: localhost:5432 (via host machine)
 :::
+
+---
+
+## Render Deployment (Recommended)
+
+Render provides managed PostgreSQL and simple deployment with automatic scaling.
+
+### Step 1: Create PostgreSQL Database
+
+1. Go to [render.com](https://render.com) and sign up
+2. Click **New +** → **PostgreSQL**
+3. Configure database:
+   - **Name**: `judicial-supreme-db`
+   - **Database Name**: `judicial_supreme`
+   - **User**: `judicial_user`
+   - **Region**: Choose closest to your users
+   - **Plan**: Free (for testing) or Standard (for production)
+4. Click **Create Database**
+5. Copy the **Internal Database URL** from the dashboard
+6. **Important**: The database URL format will be: `postgresql://judicial_user:password@host:5432/judicial_supreme`
+
+### Step 2: Create Web Service
+
+1. Click **New +** → **Web Service**
+2. Connect your GitHub repository (or upload ZIP)
+3. Configure service:
+   - **Name**: `judicial-supreme-backend`
+   - **Environment**: `Docker`
+   - **Region**: Same as database (for lower latency)
+   - **Branch**: `main` (or your production branch)
+
+4. **Build Settings**:
+   - **Docker Context**: `.`
+   - **Dockerfile Path**: `./Dockerfile`
+
+5. **Start Command**:
+   ```bash
+   gunicorn -k eventlet -w 1 run:app
+   ```
+
+6. **Health Check Path**: `/health`
+
+7. **Advanced Settings** → **Environment Variables**:
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| `FLASK_ENV` | `production` | Production mode |
+| `DATABASE_URL` | *Paste from PostgreSQL service* | Database connection |
+| `JWT_SECRET_KEY` | Generate secure key | JWT signing |
+| `SECRET_KEY` | Generate secure key | Flask secret |
+| `GUNICORN_WORKERS` | `1` | Workers for Render Free |
+| `OPENAI_API_KEY` | *Optional* | AI features |
+
+8. **Generate Secure Keys**:
+   ```bash
+   # For JWT_SECRET_KEY
+   python -c "import secrets; print(secrets.token_urlsafe(32))"
+   
+   # For SECRET_KEY
+   python -c "import secrets; print(secrets.token_hex(32))"
+   ```
+
+### Step 3: Deploy and Initialize Database
+
+1. Click **Create Web Service** - Render will automatically deploy
+2. Wait for deployment to complete (2-5 minutes)
+3. Open the service URL and test health endpoint:
+   ```bash
+   https://your-service-name.onrender.com/health
+   ```
+
+4. **Initialize Database Migrations**:
+   - Go to your service dashboard
+   - Click **Shell** tab
+   - Run migration commands:
+   ```bash
+   # Initialize migrations (first time)
+   python scripts/init_migrations.py
+   
+   # Or run manually
+   flask db init
+   flask db migrate
+   flask db upgrade
+   ```
+
+### Step 4: Test API Endpoints
+
+Your API is now available at: `https://your-service-name.onrender.com/api/v1/`
+
+**Test endpoints**:
+```bash
+# Health check
+curl https://your-service-name.onrender.com/health
+
+# Example: Get cases (with authentication token required)
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+     "https://your-service-name.onrender.com/api/v1/case?limit=10&offset=0"
+```
+
+### Render Free Tier Limitations
+
+| Feature | Limitation | Solution |
+|---------|------------|----------|
+| **Storage** | Ephemeral - files deleted on redeploy | Use external object storage (AWS S3, Cloudinary) |
+| **Memory** | ~512MB RAM | Lazy initialization enabled |
+| **Workers** | 1 worker only | Optimized for single worker |
+| **Cold Starts** | 30-second sleep after inactivity | Health checks keep service warm |
+| **Database** | Free PostgreSQL with 90-day limit | Upgrade to Standard for production |
+
+---
+
+## Database Migrations
+
+### Automatic Migration Setup
+
+The backend includes Flask-Migrate for database versioning:
+
+```bash
+# Initialize migrations (first time only)
+flask db init
+
+# Create migration file
+flask db migrate -m "Initial migration"
+
+# Apply migrations
+flask db upgrade
+```
+
+### Production Migration Script
+
+Use the provided script for automated migration:
+
+```bash
+# Run the initialization script
+python scripts/init_migrations.py
+```
+
+This script:
+1. Initializes migrations if not already done
+2. Creates initial migration
+3. Applies all pending migrations
+
+### Migration Commands for Render
+
+```bash
+# Via Render Shell
+flask db init
+flask db migrate
+flask db upgrade
+
+# Check migration status
+flask db current
+flask db history
+```
+
+---
+
+## API Versioning & Endpoints
+
+All endpoints are now versioned under `/api/v1/` prefix:
+
+### Authentication Endpoints
+```bash
+POST /api/v1/auth/login
+POST /api/v1/auth/register
+POST /api/v1/auth/logout
+POST /api/v1/auth/refresh
+```
+
+### Case Management
+```bash
+GET    /api/v1/case?limit=20&offset=0
+POST   /api/v1/case/create
+GET    /api/v1/case/{id}
+PUT    /api/v1/case/{id}
+DELETE /api/v1/case/{id}
+```
+
+### Documents (with Pagination)
+```bash
+GET    /api/v1/document/{case_id}?limit=20&offset=0
+POST   /api/v1/document/upload
+DELETE /api/v1/document/{id}
+```
+
+### Notifications (with Pagination)
+```bash
+POST   /api/v1/notification/send
+GET    /api/v1/notification/user/{id}?limit=20&offset=0
+PUT    /api/v1/notification/{id}/read
+DELETE /api/v1/notification/{id}
+```
+
+### Audit Logs (with Pagination)
+```bash
+GET /api/v1/audit/logs?limit=20&offset=0
+GET /api/v1/audit/user/{id}?limit=20&offset=0
+GET /api/v1/audit/case/{id}
+```
+
+### Health Check
+```bash
+GET /health
+```
+
+**Response Format**:
+```json
+{
+  "success": true,
+  "data": {
+    "items": [...],
+    "pagination": {
+      "total": 100,
+      "limit": 20,
+      "offset": 0,
+      "has_next": true,
+      "has_prev": false
+    }
+  },
+  "message": "Retrieved 20 cases"
+}
+```
 
 ---
 

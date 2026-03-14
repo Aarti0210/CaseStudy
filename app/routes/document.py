@@ -12,6 +12,8 @@ from app.middleware.rbac import roles_allowed
 from app.models.audit import AuditLog
 from app.models.case import Case
 from app.models.document import Document
+from app.utils.api_response import success_response, error_response
+from app.utils.pagination import get_pagination_params, paginate_query, create_paginated_response
 
 document_bp = Blueprint("document", __name__)
 
@@ -29,26 +31,25 @@ def upload():
     """Upload a document"""
     try:
         if "file" not in request.files:
-            return jsonify({"message": "file field is required", "success": False}), 400
+            return error_response("file field is required", 400)
         
         f = request.files["file"]
         if f.filename == "":
-            return jsonify({"message": "No file selected", "success": False}), 400
+            return error_response("No file selected", 400)
         
         if not allowed_file(f.filename):
-            return jsonify({
-                "message": f"File type not allowed. Allowed: {', '.join(ALLOWED_EXT)}",
-                "success": False
-            }), 400
+            return error_response(
+                f"File type not allowed. Allowed: {', '.join(ALLOWED_EXT)}", 400
+            )
         
         case_id = request.form.get("case_id")
         if not case_id:
-            return jsonify({"message": "case_id is required", "success": False}), 400
+            return error_response("case_id is required", 400)
         
         # Validate case exists
         case = Case.query.get(case_id)
         if not case:
-            return jsonify({"message": "Case not found", "success": False}), 404
+            return error_response("Case not found", 404)
         
         filename = secure_filename(f.filename)
         unique_name = f"{uuid.uuid4().hex}_{filename}"
@@ -63,10 +64,9 @@ def upload():
         max_size = current_app.config.get("MAX_CONTENT_LENGTH", 16 * 1024 * 1024)
         if file_size > max_size:
             os.remove(dest)
-            return jsonify({
-                "message": f"File too large (max {max_size // 1024 // 1024}MB)",
-                "success": False
-            }), 413
+            return error_response(
+                f"File too large (max {max_size // 1024 // 1024}MB)", 413
+            )
         
         identity = get_jwt_identity()
         doc = Document(
@@ -90,49 +90,67 @@ def upload():
         )
         db.session.commit()
         
-        return jsonify({
-            "message": "Document uploaded successfully",
-            "success": True,
-            "document": {
-                "id": doc.id,
-                "filename": unique_name,
-                "original_name": filename,
-                "size": file_size,
-                "uploaded_at": doc.uploaded_at.isoformat()
-            }
-        }), 201
+        return success_response(
+            data={
+                "document": {
+                    "id": doc.id,
+                    "filename": unique_name,
+                    "original_name": filename,
+                    "size": file_size,
+                    "uploaded_at": doc.uploaded_at.isoformat(),
+                }
+            },
+            message="Document uploaded successfully",
+            status_code=201,
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Error uploading document: {str(e)}", "success": False}), 500
+        return error_response(f"Error uploading document: {str(e)}", 500)
 
 
 @document_bp.route("/<int:case_id>", methods=["GET"])
 @jwt_required()
 def get_case_documents(case_id):
-    """Get all documents for a case"""
+    """Get all documents for a case with pagination"""
     try:
         Case.query.get_or_404(case_id)
-        docs = Document.query.filter_by(case_id=case_id).all()
         
-        return jsonify({
-            "success": True,
-            "case_id": case_id,
-            "count": len(docs),
-            "documents": [
-                {
-                    "id": d.id,
-                    "original_name": d.original_name,
-                    "filename": d.filename,
-                    "size": d.size,
-                    "content_type": d.content_type,
-                    "uploaded_at": d.uploaded_at.isoformat(),
-                    "uploaded_by": d.uploaded_by
-                }
-                for d in docs
-            ]
-        }), 200
+        # Get pagination parameters
+        limit, offset = get_pagination_params()
+        
+        # Build query
+        query = Document.query.filter_by(case_id=case_id).order_by(
+            Document.uploaded_at.desc()
+        )
+        
+        # Apply pagination
+        documents, pagination_metadata = paginate_query(query, limit, offset)
+        
+        # Format response data
+        documents_data = [
+            {
+                "id": d.id,
+                "original_name": d.original_name,
+                "filename": d.filename,
+                "size": d.size,
+                "content_type": d.content_type,
+                "uploaded_at": d.uploaded_at.isoformat(),
+                "uploaded_by": d.uploaded_by,
+            }
+            for d in documents
+        ]
+        
+        paginated_data = create_paginated_response(documents_data, pagination_metadata)
+        
+        return success_response(
+            data={
+                "case_id": case_id,
+                **paginated_data
+            },
+            message=f"Retrieved {len(documents)} documents"
+        )
     except Exception as e:
-        return jsonify({"message": f"Error fetching documents: {str(e)}", "success": False}), 500
+        return error_response(f"Error fetching documents: {str(e)}", 500)
 
 
 @document_bp.route("/<int:doc_id>", methods=["DELETE"])
@@ -145,7 +163,7 @@ def delete_document(doc_id):
         doc = Document.query.get(doc_id)
         
         if not doc:
-            return jsonify({"message": "Document not found", "success": False}), 404
+            return error_response("Document not found", 404)
         
         # Try to delete file
         upload_folder = current_app.config.get("UPLOAD_FOLDER", "uploads")
@@ -168,11 +186,9 @@ def delete_document(doc_id):
         )
         db.session.commit()
         
-        return jsonify({
-            "message": "Document deleted successfully",
-            "success": True,
-            "document_id": doc_id
-        }), 200
+        return success_response(
+            data={"document_id": doc_id}, message="Document deleted successfully"
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Error deleting document: {str(e)}", "success": False}), 500
+        return error_response(f"Error deleting document: {str(e)}", 500)

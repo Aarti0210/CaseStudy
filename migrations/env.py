@@ -32,10 +32,14 @@ def get_engine_url():
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-config.set_main_option("sqlalchemy.url", get_engine_url())
+# Import all models to ensure they are registered with SQLAlchemy
+from app.models import (
+    user, role, case, case_activity, document, hearing, 
+    notification, payment, audit, ai_log, otp, billing, chat_message
+)
 target_db = current_app.extensions["migrate"].db
+
+config.set_main_option("sqlalchemy.url", get_engine_url())
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

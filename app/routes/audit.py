@@ -3,6 +3,8 @@ from flask_jwt_extended import jwt_required
 
 from app.middleware.rbac import role_required
 from app.models.audit import AuditLog
+from app.utils.api_response import success_response, error_response
+from app.utils.pagination import get_pagination_params, paginate_query, create_paginated_response
 
 audit_bp = Blueprint("audit", __name__)
 
@@ -11,37 +13,38 @@ audit_bp = Blueprint("audit", __name__)
 @jwt_required()
 @role_required("admin")
 def logs():
-    """Get all audit logs"""
+    """Get all audit logs with pagination"""
     try:
-        limit = request.args.get("limit", 100, type=int)
-        offset = request.args.get("offset", 0, type=int)
+        # Get pagination parameters
+        limit, offset = get_pagination_params()
         
-        # AuditLog uses 'timestamp' column
-        logs_query = AuditLog.query.order_by(AuditLog.timestamp.desc())
-        total_count = logs_query.count()
+        # Build query
+        query = AuditLog.query.order_by(AuditLog.timestamp.desc())
         
-        logs_data = logs_query.limit(limit).offset(offset).all()
+        # Apply pagination
+        logs, pagination_metadata = paginate_query(query, limit, offset)
         
-        return jsonify({
-            "success": True,
-            "total": total_count,
-            "returned": len(logs_data),
-            "limit": limit,
-            "offset": offset,
-            "logs": [
-                {
-                    "id": l.id,
-                    "user_id": l.user_id,
-                    "action": l.action,
-                    "case_id": l.case_id,
-                    "details": l.details,
-                    "timestamp": l.timestamp.isoformat() if l.timestamp else None
-                }
-                for l in logs_data
-            ]
-        }), 200
+        # Format response data
+        logs_data = [
+            {
+                "id": l.id,
+                "user_id": l.user_id,
+                "action": l.action,
+                "case_id": l.case_id,
+                "details": l.details,
+                "timestamp": l.timestamp.isoformat() if l.timestamp else None
+            }
+            for l in logs
+        ]
+        
+        paginated_data = create_paginated_response(logs_data, pagination_metadata)
+        
+        return success_response(
+            data=paginated_data,
+            message=f"Retrieved {len(logs)} audit logs"
+        )
     except Exception as e:
-        return jsonify({"message": f"Error fetching logs: {str(e)}", "success": False}), 500
+        return error_response(f"Error fetching logs: {str(e)}", 500)
 
 
 @audit_bp.route("/user/<int:user_id>", methods=["GET"])

@@ -9,6 +9,8 @@ from app.middleware.rbac import role_required, roles_allowed
 from app.models.audit import AuditLog
 from app.models.notification import Notification
 from app.models.user import User
+from app.utils.api_response import success_response, error_response
+from app.utils.pagination import get_pagination_params, paginate_query, create_paginated_response
 
 notification_bp = Blueprint("notification", __name__)
 
@@ -72,35 +74,49 @@ def send():
 @notification_bp.route("/user/<int:user_id>", methods=["GET"])
 @jwt_required()
 def user_notes(user_id):
-    """Get all notifications for a user"""
+    """Get all notifications for a user with pagination"""
     try:
         identity = get_jwt_identity()
         
         # Users can only see their own notifications, admins can see any
         if identity.get("role") != "admin" and identity.get("id") != user_id:
-            return jsonify({"message": "Access denied", "success": False}), 403
+            return error_response("Access denied", 403)
         
         User.query.get_or_404(user_id)
-        notes = Notification.query.filter_by(user_id=user_id).order_by(
-            Notification.created_at.desc()
-        ).all()
         
-        return jsonify({
-            "success": True,
-            "user_id": user_id,
-            "count": len(notes),
-            "notifications": [
-                {
-                    "id": n.id,
-                    "message": n.message,
-                    "read": n.read,
-                    "created_at": n.created_at.isoformat()
-                }
-                for n in notes
-            ]
-        }), 200
+        # Get pagination parameters
+        limit, offset = get_pagination_params()
+        
+        # Build query
+        query = Notification.query.filter_by(user_id=user_id).order_by(
+            Notification.created_at.desc()
+        )
+        
+        # Apply pagination
+        notifications, pagination_metadata = paginate_query(query, limit, offset)
+        
+        # Format response data
+        notifications_data = [
+            {
+                "id": n.id,
+                "message": n.message,
+                "read": n.read,
+                "created_at": n.created_at.isoformat()
+            }
+            for n in notifications
+        ]
+        
+        paginated_data = create_paginated_response(notifications_data, pagination_metadata)
+        
+        return success_response(
+            data={
+                "user_id": user_id,
+                **paginated_data
+            },
+            message=f"Retrieved {len(notifications)} notifications"
+        )
     except Exception as e:
-        return jsonify({"message": f"Error fetching notifications: {str(e)}", "success": False}), 500
+        return error_response(f"Error fetching notifications: {str(e)}", 500)
 
 
 @notification_bp.route("/<int:notif_id>/read", methods=["PUT"])

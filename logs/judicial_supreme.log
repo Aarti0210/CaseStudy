@@ -411,3 +411,64 @@ NoneType: None
 2026-03-06 19:52:24,230 - WARNING - werkzeug -  * Debugger is active!
 2026-03-06 19:52:24,247 - INFO - werkzeug -  * Debugger PIN: 101-379-047
 2026-03-10 18:28:39,975 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-14 13:12:28,657 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 13:12:37,022 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 13:12:37,054 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 15:48:05,472 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 15:48:12,657 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 15:48:12,675 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 16:19:01,598 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 16:19:09,005 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 16:19:09,018 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 16:20:31,821 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 16:20:39,008 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 16:20:39,024 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 17:13:03,940 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:13:12,411 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:13:12,429 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:14:19,242 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:14:25,825 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:14:25,843 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:17:55,642 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:18:00,020 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:18:00,032 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:19:19,187 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:19:23,582 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:19:23,593 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:20:14,981 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\__init__.py', reloading
+2026-03-14 17:20:15,646 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\__init__.py', reloading
+2026-03-14 17:20:16,018 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:20:16,564 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:20:22,676 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:20:22,691 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:20:25,443 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:20:25,461 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 17:20:33,621 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:20:38,247 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:20:38,255 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:22:31,488 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:22:36,128 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:22:36,136 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:36:16,055 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:36:21,135 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:36:21,148 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 17:39:29,263 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 17:39:34,082 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 17:39:34,090 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 19:06:01,086 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-14 19:06:01,190 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-14 19:06:01,325 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-14 19:06:02,808 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-14 19:06:04,040 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 19:06:04,068 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 19:06:04,187 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 19:06:06,120 - INFO - werkzeug -  * Restarting with stat
+2026-03-14 19:07:17,293 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 19:07:17,295 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 19:07:17,295 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 19:07:17,315 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 19:07:17,318 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 19:07:17,318 - INFO - werkzeug -  * Debugger PIN: 384-172-313
+2026-03-14 19:07:20,365 - WARNING - werkzeug -  * Debugger is active!
+2026-03-14 19:07:20,392 - INFO - werkzeug -  * Debugger PIN: 382-646-389
+2026-03-14 20:26:58,828 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-14T14:56:58.828683", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
