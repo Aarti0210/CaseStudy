@@ -22,7 +22,7 @@ class Role(db.Model):
     )
 
     # Relationships
-    users = db.relationship("User", backref="role_obj", lazy="dynamic")
+    users = db.relationship("User", back_populates="role_obj", lazy="dynamic")
 
     def __repr__(self):
         return f"<Role {self.name}>"

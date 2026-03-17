@@ -46,47 +46,56 @@ class StructuredLogger:
     
     def _after_request(self, response):
         """Log request completion."""
-        if hasattr(g, 'start_time'):
-            duration = time.time() - g.start_time
+        try:
+            if not request or not hasattr(request, 'method'):
+                return  # Skip if no request context
+            
+            duration_ms = (time.time() * 1000) - g.start_time
             
             log_data = {
                 'event_type': 'api_request',
                 'request_id': getattr(g, 'request_id', 'unknown'),
                 'method': request.method,
                 'path': request.path,
-                'status_code': response.status_code,
-                'duration_ms': round(duration * 1000, 2),
-                'response_size': len(response.get_data()) if hasattr(response, 'get_data') else 0,
+                'status_code': getattr(response, 'status_code', 500),
+                'duration_ms': round(duration_ms, 2),
+                'response_size': len(getattr(response, 'get_data', lambda: '')() or ''),
                 'timestamp': datetime.utcnow().isoformat(),
                 'user_id': self._get_user_id(),
-                'remote_addr': request.remote_addr
+                'remote_addr': getattr(request, 'remote_addr', 'unknown')
             }
             
-            # Log at different levels based on status code
             if response.status_code >= 500:
                 self.logger.error(json.dumps(log_data))
             elif response.status_code >= 400:
                 self.logger.warning(json.dumps(log_data))
             else:
                 self.logger.info(json.dumps(log_data))
+        except RuntimeError:
+            # Skip logging if outside request context
+            pass
         
         return response
     
     def _teardown_request(self, exception):
         """Log request exceptions."""
         if exception:
-            log_data = {
-                'event_type': 'request_error',
-                'request_id': getattr(g, 'request_id', 'unknown'),
-                'method': request.method,
-                'path': request.path,
-                'error_type': type(exception).__name__,
-                'error_message': str(exception),
-                'timestamp': datetime.utcnow().isoformat(),
-                'user_id': self._get_user_id(),
-                'remote_addr': request.remote_addr
-            }
-            self.logger.error(json.dumps(log_data))
+            try:
+                log_data = {
+                    'event_type': 'request_error',
+                    'request_id': getattr(g, 'request_id', 'unknown'),
+                    'method': getattr(request, 'method', 'unknown'),
+                    'path': getattr(request, 'path', 'unknown'),
+                    'error_type': type(exception).__name__,
+                    'error_message': str(exception),
+                    'timestamp': datetime.utcnow().isoformat(),
+                    'user_id': self._get_user_id(),
+                    'remote_addr': getattr(request, 'remote_addr', 'unknown')
+                }
+                self.logger.error(json.dumps(log_data))
+            except RuntimeError:
+                # Skip logging if outside request context
+                pass
     
     def _get_user_id(self) -> Optional[str]:
         """Get current user ID from JWT token."""

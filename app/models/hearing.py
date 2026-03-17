@@ -9,8 +9,10 @@ class Hearing(db.Model):
     __tablename__ = "hearing"
     __table_args__ = (
         db.Index("idx_hearing_date", "hearing_date"),
-        db.Index("idx_hearing_judge", "judge_id"),
-        db.Index("idx_hearing_created", "created_at"),
+        db.Index("idx_hearing_case_id", "case_id"),
+        db.Index("idx_hearing_judge_id", "judge_id"),
+        db.Index("idx_hearing_status", "status"),
+        db.Index("idx_hearing_created_at", "created_at"),
     )
 
     id = db.Column(db.Integer, primary_key=True)

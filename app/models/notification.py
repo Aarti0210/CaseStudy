@@ -8,8 +8,10 @@ class Notification(db.Model):
 
     __tablename__ = "notification"
     __table_args__ = (
-        db.Index("idx_notification_user", "user_id"),
-        db.Index("idx_notification_created", "created_at"),
+        db.Index("idx_notification_user_id", "user_id"),
+        db.Index("idx_notification_created_at", "created_at"),
+        db.Index("idx_notification_read", "read"),
+        db.Index("idx_notification_user_read", "user_id", "read", "created_at"),
     )
 
     id = db.Column(db.Integer, primary_key=True)

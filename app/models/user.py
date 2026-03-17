@@ -31,7 +31,7 @@ class User(db.Model):
     )
     activities = db.relationship("CaseActivity", backref="user", lazy="dynamic")
     notifications = db.relationship("Notification", backref="user", lazy="dynamic")
-    audit_logs = db.relationship("AuditLog", backref="user", lazy="dynamic")
+    role_obj = db.relationship("Role", back_populates="users", foreign_keys=[role_id])
 
     def set_password(self, password: str) -> None:
         """Set password hash from plain text password.

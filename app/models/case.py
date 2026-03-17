@@ -16,6 +16,7 @@ class Case(db.Model):
         db.Index("idx_case_status", "status"),
         db.Index("idx_case_created_at", "created_at"),
         db.Index("idx_case_created_by", "created_by"),
+        db.Index("idx_case_assigned_judge_id", "assigned_judge_id"),
     )
 
     id = db.Column(db.Integer, primary_key=True)

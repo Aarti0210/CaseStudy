@@ -12,9 +12,13 @@ class AuditLog(db.Model):
     """AuditLog model for tracking user actions and system events."""
 
     __tablename__ = "audit_log"
-    __table_args__ = (db.Index("idx_audit_user", "user_id"),
-                      db.Index("idx_audit_case", "case_id"),
-                      db.Index("idx_audit_timestamp", "timestamp"))
+    __table_args__ = (
+        db.Index("idx_audit_user_id", "user_id"),
+        db.Index("idx_audit_case_id", "case_id"),
+        db.Index("idx_audit_timestamp", "timestamp"),
+        db.Index("idx_audit_action", "action"),
+        db.Index("idx_audit_composite", "timestamp", "user_id"),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
@@ -25,6 +29,10 @@ class AuditLog(db.Model):
     details = db.Column(db.JSON, nullable=True)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     ip_address = db.Column(db.String(45), nullable=True)
+
+    # Relationships
+    user = db.relationship("User", backref="user_audit_logs", foreign_keys=[user_id])
+    case = db.relationship("Case", backref="case_audit_logs", foreign_keys=[case_id])
 
     def __repr__(self):
         return f"<AuditLog {self.action} at {self.timestamp}>"

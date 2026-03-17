@@ -8,9 +8,11 @@ class AILog(db.Model):
 
     __tablename__ = "ai_log"
     __table_args__ = (
-        db.Index("idx_ai_log_user", "user_id"),
-        db.Index("idx_ai_log_case", "case_id"),
-        db.Index("idx_ai_log_created", "created_at"),
+        db.Index("idx_ai_log_user_id", "user_id"),
+        db.Index("idx_ai_log_case_id", "case_id"),
+        db.Index("idx_ai_log_created_at", "created_at"),
+        db.Index("idx_ai_log_model", "model"),
+        db.Index("idx_ai_log_feature", "feature_used"),
     )
 
     id = db.Column(db.Integer, primary_key=True)

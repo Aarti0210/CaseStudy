@@ -156,3 +156,9 @@ def is_cold_start_environment() -> bool:
     low_memory = '256Mi' in memory_limit or '512Mi' in memory_limit
     
     return is_render and (is_free_tier or low_memory)
+
+
+# Export aliases for easier importing
+LazyAI = LazyAIService
+LazyDB = LazyDatabaseCache
+LazySocket = LazySocketIO

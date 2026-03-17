@@ -23,6 +23,35 @@ def init_database():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
+    from app.extensions import db
+    db.init_app(app)
+    
+    with app.app_context():
+        try:
+            # Initialize migration repository
+            init()
+            print("✅ Migration repository initialized")
+            
+            # Create initial migration
+            migrate(message='Initial migration')
+            print("✅ Initial migration created")
+            
+            # Apply migration
+            upgrade()
+            print("✅ Migration applied successfully")
+            
+        except Exception as e:
+            print(f"❌ Migration error: {e}")
+            raise
+
+
+# Alias for backward compatibility
+init_migrations = init_database
+    
+    # Configure app
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
     from app.extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
