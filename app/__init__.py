@@ -109,6 +109,10 @@ def create_app(config_object=None):
 
     register_socket(socketio)
 
+    @app.route("/")
+    def home():
+        return {"message": "Backend is running 🚀"}
+
     @app.route("/health", methods=["GET"]) 
     def _health():
         from flask import jsonify
