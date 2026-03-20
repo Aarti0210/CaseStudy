@@ -77,9 +77,14 @@ def create_app(config_object=None):
     
     # Initialize Redis rate limiter if configured
     if app.config.get('RATELIMIT_STORAGE_URI'):
-        print("🔴 Initializing Redis rate limiter...")
-        limiter.init_app(app)
-        print("✅ Redis rate limiter initialized")
+        try:
+            print("🔴 Initializing Redis rate limiter...")
+            limiter.init_app(app)
+            print("✅ Redis rate limiter initialized")
+        except Exception as e:
+            print(f"⚠️ Redis rate limiter failed: {e}")
+            print("🔄 Using memory rate limiter instead")
+            limiter.init_app(app)
     else:
         print("⚠️ Using memory rate limiter (Redis not configured)")
         limiter.init_app(app)
