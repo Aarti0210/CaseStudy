@@ -74,8 +74,16 @@ def create_app(config_object=None):
     socketio.init_app(app, cors_allowed_origins="*")
     jwt.init_app(app)
     bcrypt.init_app(app)
-    # Configure rate limiter
-    limiter.init_app(app)
+    
+    # Initialize Redis rate limiter if configured
+    if app.config.get('RATELIMIT_STORAGE_URI'):
+        print("🔴 Initializing Redis rate limiter...")
+        limiter.init_app(app)
+        print("✅ Redis rate limiter initialized")
+    else:
+        print("⚠️ Using memory rate limiter (Redis not configured)")
+        limiter.init_app(app)
+    
     from .extensions import migrate
 
     migrate.init_app(app, db)

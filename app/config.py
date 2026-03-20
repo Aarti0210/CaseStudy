@@ -36,20 +36,22 @@ class BaseConfig:
     RATELIMIT_DEFAULT = os.getenv("RATELIMIT_DEFAULT", "200 per day;50 per hour")
     # Optional storage URI for Flask-Limiter (e.g. redis://localhost:6379)
     RATELIMIT_STORAGE_URI = os.getenv("RATELIMIT_STORAGE_URI", None)
-    # SQLAlchemy connection pooling settings (helpful for FreeDB/Render).
     # Do not apply pool settings for SQLite in-memory or file URIs (they are
     # incompatible with some pool parameters). The engine options will be an
     # empty dict for sqlite URIs and a configured dict otherwise.
     _db_url = os.getenv("DATABASE_URL", _DEFAULT_SQLITE)
     if _db_url.startswith("sqlite"):
+        SQLALCHEMY_DATABASE_URI = _db_url
         SQLALCHEMY_ENGINE_OPTIONS = {}
     else:
+        SQLALCHEMY_DATABASE_URI = _db_url
         SQLALCHEMY_ENGINE_OPTIONS = {
             "pool_size": int(os.getenv("SQLALCHEMY_POOL_SIZE", 5)),
             "max_overflow": int(os.getenv("SQLALCHEMY_MAX_OVERFLOW", 2)),
             "pool_timeout": int(os.getenv("SQLALCHEMY_POOL_TIMEOUT", 30)),
             "pool_recycle": int(os.getenv("SQLALCHEMY_POOL_RECYCLE", 1800)),
             "pool_pre_ping": True,  # Verify connection before use (important for Render/external DB)
+            "connect_args": {"sslmode": "require"}  # SSL for Neon/PostgreSQL
         }
     # Mail settings (for OTP/email delivery)
     MAIL_SERVER = os.getenv("MAIL_SERVER", "")
