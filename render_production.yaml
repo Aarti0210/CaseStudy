@@ -1,0 +1,36 @@
+services:
+  # Web Service
+  - type: web
+    name: judicial-supreme-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    runCommand: gunicorn -k eventlet -w 1 run:app
+    startCommand: gunicorn -k eventlet -w 1 run:app
+    healthCheckPath: /health
+    healthCheckTimeoutSeconds: 30
+    autoDeploy: true
+    
+    # Environment Variables
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_7SIXqtaY8RCk@ep-summer-cell-a8v81ozr-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: RATELIMIT_STORAGE_URI
+        value: rediss://default:gQAAAAAAATGDAAIncDJhOTg4NmZlODE5NTM0MTI0OTI5ZGQyZjczOWM4MTAwOHAyNzgyMTE@glorious-longhorn-78211.upstash.io:6379
+      - key: SECRET_KEY
+        value: Ab234h12iihjik39jkl21lala90sjdke
+      - key: JWT_SECRET_KEY
+        value: hjk234hsiut8wok213dnxufia9w0ekwn
+      - key: REDIS_SSL
+        value: true
+      - key: REDIS_TLS_CERT_REQS
+        value: required
+
+  # PostgreSQL Database
+  - type: pserv
+    name: judicial-supreme-db
+    plan: free
+    databaseName: judicial_supreme
+    ipAllowList: []  # Allow connections from your app

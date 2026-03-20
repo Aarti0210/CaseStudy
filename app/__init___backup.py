@@ -63,41 +63,42 @@ def create_app(config_object=None):
         app.register_error_handler(code, _handler)
 
     # register extensions and blueprints
-    from flask_limiter import Limiter
-    from flask_limiter.util import get_remote_address
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+import os
 
-    # Initialize limiter with proper configuration
-    limiter = Limiter(
-        key_func=get_remote_address,
-        storage_uri=os.getenv("RATELIMIT_STORAGE_URI", "memory://")
-    )
+# Initialize limiter with proper configuration
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri=os.getenv("RATELIMIT_STORAGE_URI", "memory://")
+)
 
-    from .extensions import bcrypt, cors, db, jwt, socketio
-    from .logging_config import setup_logging
-    from .middleware.structured_logging import init_structured_logging
+from .extensions import bcrypt, cors, db, jwt, socketio
+from .logging_config import setup_logging
+from .middleware.structured_logging import init_structured_logging
 
-    setup_logging("judicial_supreme")
-    init_structured_logging(app)
-    cors.init_app(app)
-    db.init_app(app)
-    socketio.init_app(app, cors_allowed_origins="*")
-    jwt.init_app(app)
-    bcrypt.init_app(app)
+setup_logging("judicial_supreme")
+init_structured_logging(app)
+cors.init_app(app)
+db.init_app(app)
+socketio.init_app(app, cors_allowed_origins="*")
+jwt.init_app(app)
+bcrypt.init_app(app)
 
-    # Initialize Redis rate limiter if configured
-    if app.config.get('RATELIMIT_STORAGE_URI'):
-        try:
-            print("🔴 Initializing Redis rate limiter...")
-            limiter.init_app(app)
-            print("✅ Redis rate limiter initialized")
-        except Exception as e:
-            print(f"⚠️ Redis rate limiter failed: {e}")
-            print("🔄 Using memory rate limiter instead")
-            limiter.init_app(app)
-    else:
-        print("⚠️ Using memory rate limiter (Redis not configured)")
+# Initialize Redis rate limiter if configured
+if app.config.get('RATELIMIT_STORAGE_URI'):
+    try:
+        print("🔴 Initializing Redis rate limiter...")
         limiter.init_app(app)
-
+        print("✅ Redis rate limiter initialized")
+    except Exception as e:
+        print(f"⚠️ Redis rate limiter failed: {e}")
+        print("🔄 Using memory rate limiter instead")
+        limiter.init_app(app)
+else:
+    print("⚠️ Using memory rate limiter (Redis not configured)")
+    limiter.init_app(app)
+    
     from .extensions import migrate
 
     migrate.init_app(app, db)
@@ -151,9 +152,4 @@ def create_app(config_object=None):
         }), 200 if overall == "ok" else 503
 
     # Do not auto-create tables during CLI/migration runs. Enable by setting
-    # CREATE_ALL_ON_START=1 in env for quick dev setups (not for production).
-    if os.getenv("CREATE_ALL_ON_START") == "1":
-        with app.app_context():
-            db.create_all()
-
     return app

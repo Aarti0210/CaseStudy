@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  judicial-backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=postgresql://neondb_owner:npg_7SIXqtaY8RCk@ep-summer-cell-a8v81ozr-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require
+      - RATELIMIT_STORAGE_URI=rediss://default:gQAAAAAAATGDAAIncDJhOTg4NmZlODE5NTM0MTI0OTI5ZGQyZjczOWM4MTAwOHAyNzgyMTE@glorious-longhorn-78211.upstash.io:6379
+      - SECRET_KEY=Ab234h12iihjik39jkl21lala90sjdke
+      - JWT_SECRET_KEY=hjk234hsiut8wok213dnxufia9w0ekwn
+      - REDIS_SSL=true
+      - REDIS_TLS_CERT_REQS=required
+    healthcheck:
+      test: ["CMD", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
