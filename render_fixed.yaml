@@ -1,5 +1,5 @@
 # ==========================================================
-# Judicial Supreme Backend - SECURE Production Deployment
+# Judicial Supreme Backend - Render Deployment Configuration
 # ==========================================================
 
 services:
@@ -15,8 +15,6 @@ services:
     healthCheckPath: /health
     healthCheckTimeoutSeconds: 30
     autoDeploy: true
-    
-    # Environment Variables (SECURE VALUES)
     envVars:
       # Flask Configuration
       - key: FLASK_ENV
@@ -28,51 +26,33 @@ services:
       - key: LOG_LEVEL
         value: INFO
       
-      # Security Keys (NEWLY GENERATED - SECURE)
+      # Security Keys (REPLACE WITH YOUR VALUES)
       - key: SECRET_KEY
-        value: -6AQ05tPDc9jiyRDjfhTaZPo08kePXLTzeAjDqL95ss
+        value: Ab234h12iihjik39jkl21lala90sjdke
       - key: JWT_SECRET_KEY
-        value: h6wfrqZnTjMIIcu3hGDYtndADjeusbolsxJry_iR3kQ
+        value: hjk234hsiut8wok213dnxufia9w0ekwn
       
-      # Database Configuration (NEON)
+      # Database Configuration (Neon)
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_7SIXqtaY8RCk@ep-summer-cell-a8v81ozr-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require
       
-      # OpenAI Configuration (NEW API KEY)
-      - key: OPENAI_API_KEY
-        value: sk-EWuGUKj8aiY0RHlqfIP7Wy3Q937RN8xCc3J7tN9j01E
-      - key: AI_MODEL
-        value: gpt-4-turbo
-      - key: AI_CACHE_TTL
-        value: "300"
-      
-      # Rate Limiting (REDIS - Upstash)
+      # Rate Limiting (Upstash Redis)
       - key: RATELIMIT_STORAGE_URI
         value: rediss://default:gQAAAAAAATGDAAIncDJhOTg4NmZlODE5NTM0MTI0OTI5ZGQyZjczOWM4MTAwOHAyNzgyMTE@glorious-longhorn-78211.upstash.io:6379
       - key: RATELIMIT_DEFAULT
         value: 200 per day;50 per hour
       
-      # Redis SSL Configuration
-      - key: REDIS_SSL
-        value: "true"
-      - key: REDIS_TLS_CERT_REQS
-        value: required
-      
-      # Email Configuration (UPDATE WITH YOUR VALUES)
+      # Email Configuration (REPLACE WITH YOUR VALUES)
       - key: MAIL_SERVER
         value: smtp.gmail.com
       - key: MAIL_PORT
         value: "587"
       - key: MAIL_USE_TLS
         value: "true"
-      - key: MAIL_USE_SSL
-        value: "false"
       - key: MAIL_USERNAME
-        sync: false
-        generateName: MAIL_USERNAME
+        value: your-email@gmail.com
       - key: MAIL_PASSWORD
-        sync: false
-        generateName: MAIL_PASSWORD
+        value: your-app-password
       - key: MAIL_DEFAULT_SENDER
         value: no-reply@judicial.local
       
@@ -90,6 +70,14 @@ services:
       - key: OTP_SEND_MAX_RETRIES
         value: "3"
       
+      # OpenAI Configuration (REPLACE WITH YOUR KEY)
+      - key: OPENAI_API_KEY
+        value: sk-9b464c9b4ba74286813b134746dc640d
+      - key: AI_MODEL
+        value: gpt-4-turbo
+      - key: AI_CACHE_TTL
+        value: "300"
+      
       # File Upload Configuration
       - key: UPLOAD_FOLDER
         value: uploads
@@ -101,16 +89,6 @@ services:
         value: "365"
       - key: HIGH_DELAY_THRESHOLD
         value: "900"
-      
-      # Production Settings
-      - key: PORT
-        value: "5000"
-      - key: SECURE_HEADERS
-        value: "true"
-      - key: ENABLE_METRICS
-        value: "true"
-      - key: STRICT_RATE_LIMITING
-        value: "true"
 
 # ==========================================================
 # Database Service (Optional - If not using external Neon)
