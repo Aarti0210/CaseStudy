@@ -50,7 +50,11 @@ class StructuredLogger:
             if not request or not hasattr(request, 'method'):
                 return  # Skip if no request context
             
-            duration_ms = (time.time() * 1000) - g.start_time
+            # Skip logging for health check HEAD requests
+            if request.method == "HEAD" and request.path == "/":
+                return response
+            
+            duration_ms = (time.time() - g.start_time) * 1000
             
             log_data = {
                 'event_type': 'api_request',
