@@ -134,10 +134,12 @@ def create_app(config_object=None):
     register_socket(socketio)
 
     @app.route("/")
+    @limiter.exempt
     def home():
         return {"status": "ok"}, 200
 
-    @app.route("/health", methods=["GET"]) 
+    @app.route("/health", methods=["GET"])
+    @limiter.exempt
     def _health():
         from flask import jsonify
         from .extensions import db

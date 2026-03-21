@@ -23,7 +23,7 @@ def _validate_email(email):
 
 
 @auth_bp.route("/signup", methods=["POST"])
-@limiter.limit("100 per hour")
+@limiter.limit("500 per hour")
 def signup():
     try:
         data = request.get_json() or {}
@@ -99,7 +99,7 @@ def signup():
 
 
 @auth_bp.route("/login", methods=["POST"])
-@limiter.limit("200 per hour")
+@limiter.limit("1000 per hour")
 def login():
     data = request.get_json() or {}
     if not data.get("email") or not data.get("password"):

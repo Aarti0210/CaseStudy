@@ -50,7 +50,7 @@ services:
       - key: RATELIMIT_STORAGE_URI
         value: rediss://default:gQAAAAAAATGDAAIncDJhOTg4NmZlODE5NTM0MTI0OTI5ZGQyZjczOWM4MTAwOHAyNzgyMTE@glorious-longhorn-78211.upstash.io:6379
       - key: RATELIMIT_DEFAULT
-        value: 200 per day;50 per hour
+        value: 1000 per day;200 per hour
       
       # Redis SSL Configuration
       - key: REDIS_SSL
