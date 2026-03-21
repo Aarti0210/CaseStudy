@@ -35,20 +35,14 @@ USER appuser
 # Expose port for Gunicorn
 EXPOSE 8000
 
-# Health check - verifies app is responding
+# Health check - verifies app is responding (using fast root path)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:8000/ || exit 1
 
-# Run Gunicorn with eventlet worker
-# - eventlet: enables async/WebSocket support for Flask-SocketIO
-# - workers: configurable via GUNICORN_WORKERS env var (default 1 for Render Free)
+# Run Gunicorn with stable gthread workers
+# - gthread: stable worker class for Flask on Render
+# - workers: 2 workers for better performance
+# - threads: 4 threads per worker
 # - bind: 0.0.0.0:8000 for container networking
 # - timeout: 120s to allow long-running ML predictions
-CMD exec gunicorn \
-    --worker-class eventlet \
-    --workers ${GUNICORN_WORKERS:-1} \
-    --bind 0.0.0.0:8000 \
-    --timeout 120 \
-    --access-logfile - \
-    --error-logfile - \
-    run:app
+CMD ["gunicorn", "app:app", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--timeout", "120", "--bind", "0.0.0.0:8000"]
