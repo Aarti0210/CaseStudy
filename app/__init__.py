@@ -85,18 +85,25 @@ def create_app(config_object=None):
     bcrypt.init_app(app)
 
     # Initialize Redis rate limiter if configured
-    if app.config.get('RATELIMIT_STORAGE_URI'):
-        try:
-            print("🔴 Initializing Redis rate limiter...")
+    def init_redis():
+        if app.config.get('RATELIMIT_STORAGE_URI'):
+            try:
+                print("🔴 Initializing Redis rate limiter...")
+                limiter.init_app(app)
+                print("✅ Redis rate limiter initialized")
+                return True
+            except Exception as e:
+                print(f"⚠️ Redis rate limiter failed: {e}")
+                print("🔄 Using memory rate limiter instead")
+                limiter.init_app(app)
+                return False
+        else:
+            print("⚠️ Using memory rate limiter (Redis not configured)")
             limiter.init_app(app)
-            print("✅ Redis rate limiter initialized")
-        except Exception as e:
-            print(f"⚠️ Redis rate limiter failed: {e}")
-            print("🔄 Using memory rate limiter instead")
-            limiter.init_app(app)
-    else:
-        print("⚠️ Using memory rate limiter (Redis not configured)")
-        limiter.init_app(app)
+            return False
+    
+    # Initialize Redis (non-blocking)
+    init_redis()
 
     from .extensions import migrate
 
@@ -125,7 +132,7 @@ def create_app(config_object=None):
 
     @app.route("/")
     def home():
-        return {"message": "Backend is running 🚀"}
+        return {"status": "ok"}, 200
 
     @app.route("/health", methods=["GET"]) 
     def _health():
