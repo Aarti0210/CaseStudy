@@ -84,7 +84,7 @@ def create_app(config_object=None):
     jwt.init_app(app)
     bcrypt.init_app(app)
 
-    # Initialize Redis rate limiter if configured
+    # Initialize Redis rate limiter if configured (non-blocking)
     def init_redis():
         if app.config.get('RATELIMIT_STORAGE_URI'):
             try:
@@ -95,10 +95,13 @@ def create_app(config_object=None):
             except Exception as e:
                 print(f"⚠️ Redis rate limiter failed: {e}")
                 print("🔄 Using memory rate limiter instead")
+                # Initialize with memory storage
+                limiter.storage = 'memory://'
                 limiter.init_app(app)
                 return False
         else:
             print("⚠️ Using memory rate limiter (Redis not configured)")
+            limiter.storage = 'memory://'
             limiter.init_app(app)
             return False
     

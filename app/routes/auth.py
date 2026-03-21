@@ -1,4 +1,5 @@
 import secrets
+import json
 from datetime import datetime, timedelta
 
 from flask import Blueprint, current_app, jsonify, request
@@ -26,55 +27,74 @@ def _validate_email(email):
 def signup():
     try:
         data = request.get_json() or {}
+        print(f"📥 Signup data received: {data}")
+        
         required_fields = ["name", "email", "password", "role"]
         for field in required_fields:
             if not data.get(field):
+                print(f"❌ Missing field: {field}")
                 return error_response(f"{field} is required", 400)
 
         allowed_roles = ["admin", "lawyer", "judge", "citizen"]
         if data["role"] not in allowed_roles:
+            print(f"❌ Invalid role: {data['role']}")
             return error_response("Invalid role", 400)
 
         if not _validate_email(data["email"]):
+            print(f"❌ Invalid email: {data['email']}")
             return error_response("Invalid email", 400)
 
-        if User.query.filter_by(email=data["email"]).first():
+        existing_user = User.query.filter_by(email=data["email"]).first()
+        if existing_user:
+            print(f"❌ User already exists: {existing_user.email}")
             return error_response("Email already registered", 409)
 
         # Look up role record and set foreign key
         role_obj = Role.query.filter_by(name=data["role"]).first()
         if not role_obj:
+            print(f"🔧 Creating new role: {data['role']}")
             role_obj = Role(name=data["role"])
             try:
                 db.session.add(role_obj)
                 db.session.commit()
+                print(f"✅ New role created: {role_obj}")
             except Exception as e:
                 db.session.rollback()
+                print(f"❌ Role creation error: {e}")
                 return jsonify({"message": "Database error creating role"}), 500
 
+        print(f"🔧 Creating user with role_id: {role_obj.id}")
         user = User(name=data["name"], email=data["email"], role_id=role_obj.id)
         user.set_password(data["password"])
         db.session.add(user)
         db.session.commit()
+        print(f"✅ User created successfully: {user}")
 
-        # Optional: Generate tokens here if your Flutter app expects them after signup
-        # access_token = create_access_token(identity=user.id)
-        # refresh_token = create_refresh_token(identity=user.id)
-        # return jsonify({
-        #     "message": "User created successfully",
-        #     "access_token": access_token,
-        #     "refresh_token": refresh_token,
-        #     "user": user.to_dict()
-        # }), 201
-
+        # Generate tokens for Flutter app after signup
+        identity = json.dumps({"id": user.id, "role": data["role"]})
+        access_token = create_access_token(identity=identity)
+        refresh_token = create_refresh_token(identity=identity)
+        print(f"🔑 Tokens generated for user {user.id}")
+        
+        response_data = {
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "user": user.to_dict()
+        }
+        print(f"📤 Returning success response: {response_data}")
+        
         return success_response(
-            data={"user": user.to_dict()}, message="User created successfully", status_code=201
+            data=response_data,
+            message="User created successfully", 
+            status_code=201
         )
 
     except Exception as e:
         db.session.rollback()
         # Log the error for debugging
-        print(f"Signup error: {str(e)}")
+        print(f"❌ Signup error: {str(e)}")
+        import traceback
+        print(f"🔍 Full traceback: {traceback.format_exc()}")
         return error_response("Internal server error", 500)
 
 

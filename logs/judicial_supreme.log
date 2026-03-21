@@ -665,3 +665,184 @@ NoneType: None
 2026-03-21 10:07:31,146 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T04:37:31.146828", "service": "judicial-backend", "environment": "unknown", "debug_mode": false}
 2026-03-21 10:52:49,431 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T05:22:49.431352", "service": "judicial-backend", "environment": "unknown", "debug_mode": false}
 2026-03-21 10:53:49,971 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "8e59ad30-5856-41f4-8522-dc9517c40c34", "method": "GET", "path": "/health", "status_code": 200, "duration_ms": 1772296559357.47, "response_size": 108, "timestamp": "2026-03-21T05:23:49.971971", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:22:14,464 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T08:52:14.464815", "service": "judicial-backend", "environment": "unknown", "debug_mode": false}
+2026-03-21 14:22:42,877 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.14.94.180:5000
+2026-03-21 14:22:42,881 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-21 14:26:59,940 - ERROR - app - Exception on /api/v1/auth/signup [POST]
+Traceback (most recent call last):
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 463, in resolve
+    return _proxy.query(name, rdtype, raise_on_no_answer=raises,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 419, in query
+    return end()
+           ^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 398, in end
+    raise result[1]
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 379, in step
+    a = fun(*args, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\dns\resolver.py", line 1371, in query
+    return self.resolve(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\dns\resolver.py", line 1328, in resolve
+    timeout = self._compute_timeout(start, lifetime, resolution.errors)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\dns\resolver.py", line 1084, in _compute_timeout
+    raise LifetimeTimeout(timeout=duration, errors=errors)
+dns.resolver.LifetimeTimeout: The resolution lifetime expired after 5.011 seconds: Server Do53:192.168.7.147@53 answered The DNS operation timed out.; Server Do53:192.168.79.178@53 answered The DNS operation timed out.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 1002, in connect_check_health
+    sock = self._connect()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 1994, in _connect
+    sock = super()._connect()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 1478, in _connect
+    for res in socket.getaddrinfo(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 558, in getaddrinfo
+    qname, addrs = _getaddrinfo_lookup(host, family, flags)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 529, in _getaddrinfo_lookup
+    raise err
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 518, in _getaddrinfo_lookup
+    answer = resolve(host, qfamily, False, use_network=use_network)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 471, in resolve
+    _raise_new_error(EAI_EAGAIN_ERROR)
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\eventlet\support\greendns.py", line 100, in _raise_new_error
+    raise error_instance.__class__(*error_instance.args)
+socket.gaierror: [Errno 11002] Lookup timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_limiter\_extension.py", line 1169, in _check_request_limit
+    raise e
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_limiter\_extension.py", line 1153, in _check_request_limit
+    self.__evaluate_limits(endpoint, all_limits)
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_limiter\_extension.py", line 1081, in __evaluate_limits
+    if not method(lim.limit, *args, **kwargs):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\limits\strategies.py", line 157, in hit
+    self.storage.incr(
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\limits\storage\base.py", line 25, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\limits\storage\redis.py", line 224, in incr
+    return int(self.lua_incr_expire([key], [expiry, amount]))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\commands\core.py", line 6225, in __call__
+    return client.evalsha(self.sha, len(keys), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\commands\core.py", line 6453, in evalsha
+    return self._evalsha("EVALSHA", sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\commands\core.py", line 6437, in _evalsha
+    return self.execute_command(command, sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 2960, in get_connection
+    connection.connect()
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 975, in connect
+    self.retry.call_with_retry(
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 976, in <lambda>
+    lambda: self.connect_check_health(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Work\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\redis\connection.py", line 1024, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11002 connecting to glorious-longhorn-78211.upstash.io:6379. Lookup timed out.
+2026-03-21 14:27:00,311 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "d3d1fd88-f60a-4736-830e-31efa7de8d37", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 10407.2, "response_size": 278, "timestamp": "2026-03-21T08:57:00.311539", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:27:00,311 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2026 14:27:00] "[35m[1mPOST /api/v1/auth/signup HTTP/1.1[0m" 500 -
+2026-03-21 14:35:31,941 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:05:31.941131", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:35:37,210 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:35:39,715 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:05:39.715161", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:35:44,276 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:35:44,287 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:36:10,606 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "fb38ba94-d9f8-4921-9553-301065f8177b", "method": "GET", "path": "/health", "status_code": 200, "duration_ms": 12432.48, "response_size": 134, "timestamp": "2026-03-21T09:06:10.606123", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:36:12,993 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "03441992-daab-4014-b87c-7e2204985f51", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 6841.56, "response_size": 77, "timestamp": "2026-03-21T09:06:12.991112", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:36:15,666 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "ecaab081-009d-4bd9-9e28-570e45de1979", "method": "POST", "path": "/api/v1/auth/login", "status_code": 200, "duration_ms": 631.27, "response_size": 945, "timestamp": "2026-03-21T09:06:15.666052", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:37:57,600 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:07:57.600354", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:38:02,310 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:38:04,839 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:08:04.839119", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:38:09,549 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:38:09,565 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:38:32,311 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "14b93d1e-4d98-4eff-bb7c-4f1ad8dd266a", "method": "GET", "path": "/health", "status_code": 200, "duration_ms": 9432.54, "response_size": 134, "timestamp": "2026-03-21T09:08:32.311151", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:38:34,404 - WARNING - judicial_backend - {"event_type": "api_request", "request_id": "55254485-1212-40e5-84bf-08dc697010cd", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 409, "duration_ms": 5118.04, "response_size": 80, "timestamp": "2026-03-21T09:08:34.404897", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:38:37,098 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "73ce231a-aa8c-4088-b388-69a6f112bece", "method": "POST", "path": "/api/v1/auth/login", "status_code": 200, "duration_ms": 639.98, "response_size": 945, "timestamp": "2026-03-21T09:08:37.098419", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:39:02,312 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "245600a5-d2b0-470c-952c-87096b6a2943", "method": "GET", "path": "/health", "status_code": 200, "duration_ms": 201.8, "response_size": 134, "timestamp": "2026-03-21T09:09:02.310153", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:39:04,566 - WARNING - judicial_backend - {"event_type": "api_request", "request_id": "4b43fbe1-2cd9-4b01-9e75-0eb421d3fa03", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 409, "duration_ms": 210.12, "response_size": 80, "timestamp": "2026-03-21T09:09:04.566667", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:39:07,195 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "943ef3d7-6bb8-4a48-ba87-2bf39012eb34", "method": "POST", "path": "/api/v1/auth/login", "status_code": 200, "duration_ms": 591.29, "response_size": 945, "timestamp": "2026-03-21T09:09:07.195150", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:39:45,208 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "91a62a2e-743e-410e-b35a-aed0f9775dbb", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 594.32, "response_size": 77, "timestamp": "2026-03-21T09:09:45.208546", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:40:55,568 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:10:55.568718", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:41:00,811 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:41:02,861 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:11:02.861638", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:41:07,968 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:41:07,985 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:41:19,285 - WARNING - judicial_backend - {"event_type": "api_request", "request_id": "1358f9ce-86d9-42dc-b8d4-22a0f2d8773c", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 409, "duration_ms": 1314.21, "response_size": 80, "timestamp": "2026-03-21T09:11:19.285686", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:41:47,064 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "b86a8947-9da3-4273-bab0-a3ba0f7cc2ee", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 645.33, "response_size": 77, "timestamp": "2026-03-21T09:11:47.064619", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:44:11,088 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:14:11.088521", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:44:33,186 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:14:33.186981", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:45:20,481 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:15:20.481563", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:45:25,742 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:45:27,765 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:15:27.765668", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:45:33,081 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:45:33,088 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:45:53,001 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "03703088-585a-4977-b252-0d04349c43a9", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 1430.45, "response_size": 77, "timestamp": "2026-03-21T09:15:53.001516", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:46:53,540 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:16:53.540657", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:46:58,497 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:47:00,426 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:17:00.426148", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:47:05,576 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:47:05,586 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:47:25,605 - ERROR - judicial_backend - {"event_type": "api_request", "request_id": "dadcc7ef-8dbf-49a0-b8df-b67dec5e44fc", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 500, "duration_ms": 1547.43, "response_size": 77, "timestamp": "2026-03-21T09:17:25.605913", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:47:54,615 - INFO - werkzeug -  * Detected change in 'C:\\Users\\Work\\Downloads\\judicial_supreme_backend_v3\\app\\routes\\auth.py', reloading
+2026-03-21 14:47:55,786 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:47:57,792 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:17:57.792572", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:48:03,097 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:48:03,108 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:48:45,882 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:18:45.882270", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:48:51,470 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:48:53,680 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:18:53.680572", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:48:59,098 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:48:59,109 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:49:23,074 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:19:23.074232", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:49:28,677 - INFO - werkzeug -  * Restarting with stat
+2026-03-21 14:49:30,864 - INFO - judicial_backend - {"event_type": "system_event", "system_event": "application_startup", "message": "Judicial backend application started", "timestamp": "2026-03-21T09:19:30.862545", "service": "judicial-backend", "environment": "unknown", "debug_mode": true}
+2026-03-21 14:49:36,526 - WARNING - werkzeug -  * Debugger is active!
+2026-03-21 14:49:36,558 - INFO - werkzeug -  * Debugger PIN: 724-591-875
+2026-03-21 14:49:49,147 - WARNING - judicial_backend - {"event_type": "api_request", "request_id": "d4e52f63-7f67-4ad6-9c0e-5c1f58d3cb70", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 409, "duration_ms": 976.42, "response_size": 80, "timestamp": "2026-03-21T09:19:49.147486", "user_id": null, "remote_addr": "127.0.0.1"}
+2026-03-21 14:50:11,526 - INFO - judicial_backend - {"event_type": "api_request", "request_id": "69db07fb-4d5b-4a1b-bb8b-992543c1189c", "method": "POST", "path": "/api/v1/auth/signup", "status_code": 201, "duration_ms": 793.9, "response_size": 1151, "timestamp": "2026-03-21T09:20:11.526346", "user_id": null, "remote_addr": "127.0.0.1"}
