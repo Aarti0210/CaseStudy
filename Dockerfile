@@ -40,4 +40,5 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8000/ || exit 1
 
 # ✅ FIXED Gunicorn command - USING CORRECT run:app
+# Force rebuild: 2026-03-21-12:41
 CMD ["gunicorn", "run:app", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--timeout", "120", "--bind", "0.0.0.0:8000"]
