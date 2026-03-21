@@ -17,14 +17,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies (no cache for better security)
+# Install Python dependencies
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-# Copy application code (exclude .env via .dockerignore)
+# Copy application code
 COPY . /app
 
-# Create uploads and logs directories with correct permissions
+# Create necessary directories
 RUN mkdir -p /app/uploads /app/logs
 
 # Create non-root user for security
@@ -32,17 +32,12 @@ RUN useradd -m -u 1000 appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Expose port for Gunicorn
+# Expose port
 EXPOSE 8000
 
-# Health check - verifies app is responding (using fast root path)
+# Health check
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8000/ || exit 1
 
-# Run Gunicorn with stable gthread workers
-# - gthread: stable worker class for Flask on Render
-# - workers: 2 workers for better performance
-# - threads: 4 threads per worker
-# - bind: 0.0.0.0:8000 for container networking
-# - timeout: 120s to allow long-running ML predictions
-CMD ["gunicorn", "app:app", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--timeout", "120", "--bind", "0.0.0.0:8000"]
+# ✅ FIXED Gunicorn command - USING CORRECT run:app
+CMD ["gunicorn", "run:app", "--workers", "2", "--worker-class", "gthread", "--threads", "4", "--timeout", "120", "--bind", "0.0.0.0:8000"]
